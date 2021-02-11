@@ -30,3 +30,11 @@ INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('Nissan', 'Alt
 INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('Lexus', 'ES350', 1998, 1599.99, 6);
 INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('BMW', '300', 2012, 22999.99, 6);
 INSERT INTO vehicles (make, model, year, price, owner_id) VALUES ('BMW', '700', 2015, 52999.99, 6);
+
+-- exercise answers
+
+SELECT * FROM owners o LEFT JOIN vehicles v ON o.id = v.owner_id;
+
+SELECT o.first_name, o.last_name, COUNT(*) FROM owners o JOIN vehicles v ON o.id = v.owner_id GROUP BY o.first_name, o.last_name ORDER BY o.first_name;
+
+SELECT o.first_name, o.last_name, CAST(AVG(v.price) AS INT) AS ave_price, COUNT(*) AS count  FROM owners o JOIN vehicles v ON o.id = v.owner_id GROUP BY o.id HAVING COUNT(*) > 1 AND AVG(v.price) > 10000 ORDER BY first_name DESC;
